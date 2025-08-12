@@ -24,14 +24,16 @@ formatting issues.
 
 ## Development Workflow
 
-Follow the workflow documented in README.md for making changes to the
-hero-diagram, including updating screenshots and reviewing the index snapshot.
+Follow the 5-step development loop documented in README.md: plan → change → screenshots → review → critique.
 
 A web server is running on port 3021 serving the www/ directory. You can access:
-- http://localhost:3021/hero-diagram/ for the main demo
+- http://localhost:3021/ for the screenshot showcase
+- http://localhost:3021/hero-diagram/ for the main interactive demo
 - http://localhost:3021/components-guide/ for the component style guide
 
 The project uses Lit components for terminal UI. Components are in www/components/ and shared styles in www/styles.css.
+
+Use the redesigned screenshot tool: `node bin/screenshot.js <page> <width> <output-file>`
 
 ## Release Process
 

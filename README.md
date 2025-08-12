@@ -14,44 +14,47 @@ Visit http://localhost:3021/hero-diagram/
 
 ## Screenshot Tool
 
-Generate responsive screenshots:
+Generate screenshots of different pages at various viewport sizes:
 
 ```bash
-node bin/screenshot.js <width> <output-path>
+node bin/screenshot.js <page> <width> <output-file>
 ```
 
-Examples:
+**Available pages:**
+- `/` - Main index page (screenshot showcase)
+- `/hero-diagram/` - Interactive demo
+- `/components-guide/` - Component style guide
 
+**Examples:**
 ```bash
-node bin/screenshot.js 400 screenshots    # Mobile
-node bin/screenshot.js 768 screenshots    # Tablet  
-node bin/screenshot.js 1024 screenshots   # Desktop
+node bin/screenshot.js /hero-diagram/ 400 screenshots/mobile.png      # Mobile
+node bin/screenshot.js /hero-diagram/ 768 screenshots/tablet.png      # Tablet  
+node bin/screenshot.js /hero-diagram/ 1024 screenshots/desktop.png    # Desktop
+node bin/screenshot.js / 1024 screenshots/review.png                  # Index review
 ```
 
-Output: `screenshot-<width>.png` in specified directory.
+## Development Loop
 
-## Development Workflow
+**5-step iterative process:**
 
-When making changes to the hero-diagram:
+1. **Plan** - Design the changes you want to make
+2. **Change** - Implement the modifications to components/pages  
+3. **Screenshots** - Generate responsive screenshots + review screenshot
+4. **Review** - Examine the review screenshot for visual issues
+5. **Critique** - Identify the most glaring problems and iterate
 
-1. **Update screenshots**: Generate all 3 responsive screenshots
-   ```bash
-   node bin/screenshot.js 400 screenshots    # Mobile
-   node bin/screenshot.js 768 screenshots    # Tablet  
-   node bin/screenshot.js 1024 screenshots   # Desktop
-   ```
+**Screenshot commands for the loop:**
+```bash
+# Generate responsive screenshots
+node bin/screenshot.js /hero-diagram/ 400 screenshots/screenshot-400.png
+node bin/screenshot.js /hero-diagram/ 768 screenshots/screenshot-768.png  
+node bin/screenshot.js /hero-diagram/ 1024 screenshots/screenshot-1024.png
 
-2. **Update index snapshot**: Take a screenshot of the index.html page for
-   review
-   ```bash
-   node bin/screenshot.js 1024 /tmp www/
-   ```
+# Generate review screenshot
+node bin/screenshot.js / 1024 screenshots/review.png
 
-3. **Review the index snapshot**: Critically examine the
-   `/tmp/screenshot-1024.png` to verify:
-   - All three screenshots display correctly
-   - Responsive layout works across viewport sizes
-   - Changes are properly reflected in all views
+# Review screenshots/review.png for issues and critique
+```
 
 ## Structure
 
