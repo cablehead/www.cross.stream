@@ -40,6 +40,3 @@ store/
 
 # Screenshot files (generated, not committed)
 www/screenshot-*.png
-
-# Random screenshot from development
-animation-screenshot.png
