@@ -22,6 +22,20 @@ Example good commit messages from this project:
 Always run `./scripts/check.sh` before committing. Use `cargo fmt` to fix
 formatting issues.
 
+### CSS Guidelines
+
+**NEVER use `!important` in CSS.** Instead, diagnose why the CSS is not working
+as expected:
+
+- Check CSS specificity and selector precedence
+- Look for conflicting styles in media queries
+- Verify proper cascading order
+- Use more specific selectors when needed
+- Investigate component scoping issues
+
+Using `!important` masks underlying CSS architecture problems and creates
+maintenance debt.
+
 ## Development Workflow
 
 A web server is running on port 3021 serving the www/ directory. You can access:
@@ -44,6 +58,9 @@ Use the redesigned screenshot tool:
 2. **Change** - Implement the modifications to components/pages
 3. **Screenshots** - Generate responsive screenshots + review screenshot
 4. **Review** - Examine the review screenshot for visual issues
+   - **EXPECT the issue NOT to be fixed** - assume your changes didn't work
+   - Describe exactly what you see in the image, not what you expect to see
+   - Look at visual details literally before drawing any conclusions
 5. **Critique** - Identify the most glaring problems and iterate
 
 **Screenshot commands for the loop:**
