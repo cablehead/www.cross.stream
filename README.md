@@ -29,6 +29,27 @@ node bin/screenshot.js 1024 www   # Desktop
 
 Output: `screenshot-<width>.png` in specified directory.
 
+## Development Workflow
+
+When making changes to the hero-diagram.html:
+
+1. **Update screenshots**: Generate all 3 responsive screenshots
+   ```bash
+   node bin/screenshot.js 400 www    # Mobile
+   node bin/screenshot.js 768 www    # Tablet  
+   node bin/screenshot.js 1024 www   # Desktop
+   ```
+
+2. **Update index snapshot**: Take a screenshot of the index.html page for review
+   ```bash
+   node bin/screenshot.js 1024 /tmp index.html
+   ```
+
+3. **Review the index snapshot**: Critically examine the `/tmp/screenshot-1024.png` to verify:
+   - All three screenshots display correctly
+   - Responsive layout works across viewport sizes  
+   - Changes are properly reflected in all views
+
 ## Structure
 
 - `www/` - Static files

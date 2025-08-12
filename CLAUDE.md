@@ -19,6 +19,10 @@ Example good commit messages from this project:
 
 Always run `./scripts/check.sh` before committing. Use `cargo fmt` to fix formatting issues.
 
+## Development Workflow
+
+Follow the workflow documented in README.md for making changes to hero-diagram.html, including updating screenshots and reviewing the index snapshot.
+
 ## Release Process
 
 1. Find last stable release: `git tag --sort=-version:refname | grep -v dev | head -1`
