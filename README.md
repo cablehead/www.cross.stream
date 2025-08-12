@@ -35,30 +35,6 @@ node bin/screenshot.js /hero-diagram/ 1024 screenshots/desktop.png    # Desktop
 node bin/screenshot.js / 1024 screenshots/review.png                  # Index review
 ```
 
-## Development Loop
-
-**5-step iterative process:**
-
-1. **Plan** - Design the changes you want to make
-2. **Change** - Implement the modifications to components/pages
-3. **Screenshots** - Generate responsive screenshots + review screenshot
-4. **Review** - Examine the review screenshot for visual issues
-5. **Critique** - Identify the most glaring problems and iterate
-
-**Screenshot commands for the loop:**
-
-```bash
-# Generate responsive screenshots
-node bin/screenshot.js /hero-diagram/ 400 screenshots/screenshot-400.png
-node bin/screenshot.js /hero-diagram/ 768 screenshots/screenshot-768.png  
-node bin/screenshot.js /hero-diagram/ 1024 screenshots/screenshot-1024.png
-
-# Generate review screenshot
-node bin/screenshot.js / 1024 screenshots/review.png
-
-# Review screenshots/review.png for issues and critique
-```
-
 ## Structure
 
 - `www/` - Static files

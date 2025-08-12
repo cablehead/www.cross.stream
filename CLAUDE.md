@@ -24,16 +24,41 @@ formatting issues.
 
 ## Development Workflow
 
-Follow the 5-step development loop documented in README.md: plan → change → screenshots → review → critique.
-
 A web server is running on port 3021 serving the www/ directory. You can access:
+
 - http://localhost:3021/ for the screenshot showcase
 - http://localhost:3021/hero-diagram/ for the main interactive demo
 - http://localhost:3021/components-guide/ for the component style guide
 
-The project uses Lit components for terminal UI. Components are in www/components/ and shared styles in www/styles.css.
+The project uses Lit components for terminal UI. Components are in
+www/components/ and shared styles in www/styles.css.
 
-Use the redesigned screenshot tool: `node bin/screenshot.js <page> <width> <output-file>`
+Use the redesigned screenshot tool:
+`node bin/screenshot.js <page> <width> <output-file>`
+
+### Development Loop (for AI agents)
+
+**5-step iterative process:**
+
+1. **Plan** - Design the changes you want to make
+2. **Change** - Implement the modifications to components/pages
+3. **Screenshots** - Generate responsive screenshots + review screenshot
+4. **Review** - Examine the review screenshot for visual issues
+5. **Critique** - Identify the most glaring problems and iterate
+
+**Screenshot commands for the loop:**
+
+```bash
+# Generate responsive screenshots
+node bin/screenshot.js /hero-diagram/ 400 screenshots/screenshot-400.png
+node bin/screenshot.js /hero-diagram/ 768 screenshots/screenshot-768.png  
+node bin/screenshot.js /hero-diagram/ 1024 screenshots/screenshot-1024.png
+
+# Generate review screenshot  
+node bin/screenshot.js / 1200 www/screenshots/review.png
+
+# Review www/screenshots/review.png for issues and critique
+```
 
 ## Release Process
 
