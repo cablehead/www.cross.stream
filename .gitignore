@@ -39,4 +39,4 @@ store/
 .claude/
 
 # Screenshot files (generated, not committed)
-www/screenshot-*.png
+www/screenshots/

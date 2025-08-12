@@ -3,10 +3,10 @@
 const { chromium } = require('playwright');
 const path = require('path');
 
-async function takeScreenshot(width, outputPath, page = 'hero-diagram.html') {
+async function takeScreenshot(width, outputPath, page = 'hero-diagram/') {
   if (!width || !outputPath) {
     console.error('Usage: node screenshot.js <width> <output-path> [page]');
-    console.error('Example: node screenshot.js 400 ./www index.html');
+    console.error('Example: node screenshot.js 400 screenshots components-guide/');
     process.exit(1);
   }
 

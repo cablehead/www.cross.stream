@@ -24,12 +24,14 @@ formatting issues.
 
 ## Development Workflow
 
-Follow the workflow documented in README.md for making changes to
-hero-diagram.html, including updating screenshots and reviewing the index
-snapshot.
+Follow the workflow documented in README.md for making changes to the
+hero-diagram, including updating screenshots and reviewing the index snapshot.
 
-A web server is running on port 3021 serving the www/ directory. You can access
-http://localhost:3021/hero-diagram.html for testing.
+A web server is running on port 3021 serving the www/ directory. You can access:
+- http://localhost:3021/hero-diagram/ for the main demo
+- http://localhost:3021/components-guide/ for the component style guide
+
+The project uses Lit components for terminal UI. Components are in www/components/ and shared styles in www/styles.css.
 
 ## Release Process
 
