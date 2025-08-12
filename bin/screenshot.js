@@ -3,30 +3,30 @@
 const { chromium } = require('playwright');
 const path = require('path');
 
-async function takeScreenshot(width, outputPath) {
+async function takeScreenshot(width, outputPath, page = 'hero-diagram.html') {
   if (!width || !outputPath) {
-    console.error('Usage: node screenshot.js <width> <output-path>');
-    console.error('Example: node screenshot.js 400 ./www');
+    console.error('Usage: node screenshot.js <width> <output-path> [page]');
+    console.error('Example: node screenshot.js 400 ./www index.html');
     process.exit(1);
   }
 
   const browser = await chromium.launch();
-  const page = await browser.newPage();
+  const playwrightPage = await browser.newPage();
   
   // Set viewport size
-  await page.setViewportSize({ width: parseInt(width), height: 1080 });
+  await playwrightPage.setViewportSize({ width: parseInt(width), height: 1080 });
   
   // Navigate to the page
-  await page.goto('http://localhost:3021/hero-diagram.html');
+  await playwrightPage.goto(`http://localhost:3021/${page}`);
   
   // Wait for content to load
-  await page.waitForLoadState('networkidle');
+  await playwrightPage.waitForLoadState('networkidle');
   
   // Take screenshot
   const filename = `screenshot-${width}.png`;
   const fullPath = path.join(outputPath, filename);
   
-  await page.screenshot({ 
+  await playwrightPage.screenshot({ 
     path: fullPath,
     fullPage: true 
   });
@@ -37,5 +37,5 @@ async function takeScreenshot(width, outputPath) {
 }
 
 // Get command line arguments
-const [,, width, outputPath] = process.argv;
-takeScreenshot(width, outputPath);
+const [,, width, outputPath, page] = process.argv;
+takeScreenshot(width, outputPath, page);
