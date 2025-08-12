@@ -5,11 +5,13 @@ When committing: review `git diff`
 - Use conventional commit format: `type: subject line`
 - Keep subject line concise and descriptive
 - **NEVER include marketing language, promotional text, or AI attribution**
-- **NEVER add "Generated with Claude Code", "Co-Authored-By: Claude", or similar spam**
+- **NEVER add "Generated with Claude Code", "Co-Authored-By: Claude", or similar
+  spam**
 - Follow existing project patterns from git log
 - Prefer just a subject and no body, unless the change is particularly complex
 
 Example good commit messages from this project:
+
 - `test: allow dead code in test utility methods`
 - `fix: improve error handling`
 - `feat: add a --fallback option to .static to support SPAs`
@@ -17,16 +19,24 @@ Example good commit messages from this project:
 
 ## Code Quality
 
-Always run `./scripts/check.sh` before committing. Use `cargo fmt` to fix formatting issues.
+Always run `./scripts/check.sh` before committing. Use `cargo fmt` to fix
+formatting issues.
 
 ## Development Workflow
 
-Follow the workflow documented in README.md for making changes to hero-diagram.html, including updating screenshots and reviewing the index snapshot.
+Follow the workflow documented in README.md for making changes to
+hero-diagram.html, including updating screenshots and reviewing the index
+snapshot.
+
+A web server is running on port 3021 serving the www/ directory. You can access
+http://localhost:3021/hero-diagram.html for testing.
 
 ## Release Process
 
-1. Find last stable release: `git tag --sort=-version:refname | grep -v dev | head -1`
-2. Get commits since last release: `git log --oneline --pretty=format:"* %s (%ad)" --date=short v{last}..HEAD`
+1. Find last stable release:
+   `git tag --sort=-version:refname | grep -v dev | head -1`
+2. Get commits since last release:
+   `git log --oneline --pretty=format:"* %s (%ad)" --date=short v{last}..HEAD`
 3. Create `changes/v{version}.md` with title and commit list
 4. Add highlights section for notable changes
 5. Commit changes and tag: `git tag v{version}`
@@ -34,6 +44,7 @@ Follow the workflow documented in README.md for making changes to hero-diagram.h
 ## Version Bump Process
 
 When bumping version:
+
 1. Update version in `Cargo.toml`
 2. Run `cargo check` to update `Cargo.lock`
 3. Commit with message like `chore: bump version to X.Y.Z`
