@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build artifacts
+*.log
+.npm
+
+# Environment and development
+.env
+.env.local
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files and directories
+tmp/
+temp/
+*.tmp
+
+# Application-specific
+# Store database files
+store/
+
+# Claude development files
+.claude/
+
+# Screenshot files (generated, not committed)
+www/screenshot-*.png
+
+# Random screenshot from development
+animation-screenshot.png
