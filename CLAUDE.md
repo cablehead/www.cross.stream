@@ -37,6 +37,9 @@ as expected:
 Using `!important` masks underlying CSS architecture problems and creates
 maintenance debt.
 
+**NEVER use `font-weight` for emphasis.** Use color, typography scale, or other
+visual methods instead of making text bold.
+
 ## Development
 
 A web server is running on port 3021 serving the www/ directory. You can access:
