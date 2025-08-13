@@ -50,18 +50,24 @@ The project uses Lit components. Components are in www/components/
 
 **5-step iterative process:**
 
-1. **Plan** - Design the changes you want to make
-2. **Change** - Implement the modifications to components/pages
-3. **Screenshot** - Generate the review screenshot
-4. **Review** - Examine the review screenshot for visual issues
+1. **Screenshot** - Generate the review screenshot
+2. **Review** - Re-examine the review screenshot with completely fresh eyes
+   - **CRITICAL: View as if seeing for the first time** - ignore all previous
+     context
    - **EXPECT the issue NOT to be fixed** - assume your changes didn't work
    - Describe exactly what you see in the image, not what you expect to see
+   - **Verify changes worked**: Did the previous change apply as intended, or
+     did something break/disappear?
    - Look at visual details literally before drawing any conclusions
-5. **Critique** - Identify the most glaring problem you can see, and describe it
+3. **Critique** - Identify the most glaring problem you can see, and describe
+   it, then ask for what the user would like to work on
+4. **Plan** - Design the changes you want to make
+5. **Change** - Implement the modifications to components/pages
+6. **Loop**
 
 ```bash
 # Generate review screenshot  
-node bin/screenshot.js /review/ 1200 www/screenshots/review.png
+node bin/screenshot.js / 1200 www/screenshots/review.png
 # Review www/screenshots/review.png for issues and critique
 ```
 
