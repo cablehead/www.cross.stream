@@ -19,8 +19,9 @@ Example good commit messages from this project:
 
 ## Code Quality
 
-Always run `./scripts/check.sh` before committing. Use `cargo fmt` to fix
-formatting issues.
+```
+deno fmt README.md CLAUDE.md ./www
+```
 
 ### CSS Guidelines
 
@@ -56,43 +57,15 @@ Use the redesigned screenshot tool:
 
 1. **Plan** - Design the changes you want to make
 2. **Change** - Implement the modifications to components/pages
-3. **Screenshots** - Generate responsive screenshots + review screenshot
+3. **Screenshot** - Generate the review screenshot
 4. **Review** - Examine the review screenshot for visual issues
    - **EXPECT the issue NOT to be fixed** - assume your changes didn't work
    - Describe exactly what you see in the image, not what you expect to see
    - Look at visual details literally before drawing any conclusions
-5. **Critique** - Identify the most glaring problems and iterate
-
-**Screenshot commands for the loop:**
+5. **Critique** - Identify the most glaring problem you can see, and describe it
 
 ```bash
-# Generate responsive screenshots
-node bin/screenshot.js /hero-diagram/ 400 screenshots/screenshot-400.png
-node bin/screenshot.js /hero-diagram/ 768 screenshots/screenshot-768.png  
-node bin/screenshot.js /hero-diagram/ 1024 screenshots/screenshot-1024.png
-
 # Generate review screenshot  
 node bin/screenshot.js / 1200 www/screenshots/review.png
-
 # Review www/screenshots/review.png for issues and critique
 ```
-
-## Release Process
-
-1. Find last stable release:
-   `git tag --sort=-version:refname | grep -v dev | head -1`
-2. Get commits since last release:
-   `git log --oneline --pretty=format:"* %s (%ad)" --date=short v{last}..HEAD`
-3. Create `changes/v{version}.md` with title and commit list
-4. Add highlights section for notable changes
-5. Commit changes and tag: `git tag v{version}`
-
-## Version Bump Process
-
-When bumping version:
-
-1. Update version in `Cargo.toml`
-2. Run `cargo check` to update `Cargo.lock`
-3. Commit with message like `chore: bump version to X.Y.Z`
-4. Tag with `git tag vX.Y.Z`
-5. Push commits and tags: `git push && git push --tags`
