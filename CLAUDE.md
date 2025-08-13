@@ -37,19 +37,14 @@ as expected:
 Using `!important` masks underlying CSS architecture problems and creates
 maintenance debt.
 
-## Development Workflow
+## Development
 
 A web server is running on port 3021 serving the www/ directory. You can access:
 
-- http://localhost:3021/ for the screenshot showcase
-- http://localhost:3021/hero-diagram/ for the main interactive demo
-- http://localhost:3021/components-guide/ for the component style guide
+- http://localhost:3021/ # main page
+- http://localhost:3021/review/ # to view the main in 3x page widths
 
-The project uses Lit components for terminal UI. Components are in
-www/components/ and shared styles in www/styles.css.
-
-Use the redesigned screenshot tool:
-`node bin/screenshot.js <page> <width> <output-file>`
+The project uses Lit components. Components are in www/components/
 
 ### Development Loop (for AI agents)
 
@@ -66,6 +61,10 @@ Use the redesigned screenshot tool:
 
 ```bash
 # Generate review screenshot  
-node bin/screenshot.js / 1200 www/screenshots/review.png
+node bin/screenshot.js /review/ 1200 www/screenshots/review.png
 # Review www/screenshots/review.png for issues and critique
 ```
+
+## Never
+
+respond with Perfect!
