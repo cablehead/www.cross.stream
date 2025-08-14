@@ -45,9 +45,49 @@ visual methods instead of making text bold.
 A web server is running on port 3021 serving the www/ directory. You can access:
 
 - http://localhost:3021/ # main page
+- http://localhost:3021/canvas/ # business model canvas
 - http://localhost:3021/review/ # to view the main in 3x page widths
 
 The project uses Lit components. Components are in www/components/
+
+### Template System
+
+The project uses Jinja2 templates with minijinja-cli for server-side rendering:
+
+- `base.html` - Base template with common HTML structure
+- `index.html` - Main page template (extends base.html)
+- `canvas/index.html` - Canvas page template (extends ../base.html)
+- `serve.nu` - Nushell server script with minijinja integration
+
+#### Testing Templates
+
+**Test templates directly with minijinja-cli:**
+```bash
+# Test individual templates
+minijinja-cli ./index.html
+minijinja-cli ./canvas/index.html
+
+# Should output fully rendered HTML, no raw {% %} syntax
+```
+
+**Test full stack with serve.nu:**
+```bash
+# Start the server (runs in background)
+cat serve.nu | http-nu :3021 -
+
+# Test with curl
+curl -s localhost:3021 | head -10              # main page
+curl -s localhost:3021/canvas/ | head -10      # canvas page
+curl -I localhost:3021/global.css              # static files
+
+# Verify templates are rendered (should return 0)
+curl -s localhost:3021/canvas/ | grep -c "{% extends"
+```
+
+**Template troubleshooting:**
+- Ensure paths are correct in template inheritance (`../base.html` for subdirectories)
+- Set `components_path_value` variable in child templates for script paths
+- Test minijinja-cli directly before testing through server
 
 ### Development Loop (for AI agents)
 

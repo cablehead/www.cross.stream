@@ -3,34 +3,26 @@
 const { chromium } = require("playwright");
 const path = require("path");
 
-// Page mappings
-const PAGE_MAP = {
-  "/": "",
-  "/hero-diagram/": "hero-diagram/",
-  "/components-guide/": "components-guide/",
-};
-
-async function takeScreenshot(page, width, outputFile, aspectRatio) {
-  if (!page || !width || !outputFile) {
+async function takeScreenshot(pageOrUrl, width, outputFile, aspectRatio) {
+  if (!pageOrUrl || !width || !outputFile) {
     console.error(
-      "Usage: node screenshot.js <page> <width> <output-file> [aspectRatio]",
+      "Usage: node screenshot.js <page-or-url> <width> <output-file> [aspectRatio]",
     );
-    console.error("Pages: /, /hero-diagram/, /components-guide/");
-    console.error(
-      "Example: node screenshot.js /hero-diagram/ 1024 screenshots/desktop.png",
-    );
-    console.error(
-      "Example with aspect ratio: node screenshot.js / 1200x630 og.png 1.91:1",
-    );
+    console.error("Examples:");
+    console.error("  node screenshot.js /canvas/ 1024 screenshots/canvas.png");
+    console.error("  node screenshot.js http://localhost:3021/canvas/v0.1/ 1024 screenshots/canvas-v01.png");
+    console.error("  node screenshot.js / 1200x630 og.png 1.91:1");
     process.exit(1);
   }
 
-  // Map page to URL path
-  const urlPath = PAGE_MAP[page];
-  if (urlPath === undefined) {
-    console.error(`Unknown page: ${page}`);
-    console.error("Available pages:", Object.keys(PAGE_MAP).join(", "));
-    process.exit(1);
+  // Determine if input is a full URL or a path
+  let url;
+  if (pageOrUrl.startsWith('http://') || pageOrUrl.startsWith('https://')) {
+    url = pageOrUrl;
+  } else {
+    // Treat as path, prepend localhost
+    const urlPath = pageOrUrl.startsWith('/') ? pageOrUrl.slice(1) : pageOrUrl;
+    url = `http://localhost:3021/${urlPath}`;
   }
 
   const browser = await chromium.launch();
@@ -65,7 +57,6 @@ async function takeScreenshot(page, width, outputFile, aspectRatio) {
   });
 
   // Navigate to the page
-  const url = `http://localhost:3021/${urlPath}`;
   console.log(`Navigating to: ${url}`);
   await playwrightPage.goto(url);
 
@@ -81,5 +72,5 @@ async function takeScreenshot(page, width, outputFile, aspectRatio) {
 }
 
 // Get command line arguments
-const [, , page, width, outputFile, aspectRatio] = process.argv;
-takeScreenshot(page, width, outputFile, aspectRatio);
+const [, , pageOrUrl, width, outputFile, aspectRatio] = process.argv;
+takeScreenshot(pageOrUrl, width, outputFile, aspectRatio);
