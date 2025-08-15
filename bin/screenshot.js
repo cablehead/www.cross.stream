@@ -10,18 +10,20 @@ async function takeScreenshot(pageOrUrl, width, outputFile, aspectRatio) {
     );
     console.error("Examples:");
     console.error("  node screenshot.js /canvas/ 1024 screenshots/canvas.png");
-    console.error("  node screenshot.js http://localhost:3021/canvas/v0.1/ 1024 screenshots/canvas-v01.png");
+    console.error(
+      "  node screenshot.js http://localhost:3021/canvas/v0.1/ 1024 screenshots/canvas-v01.png",
+    );
     console.error("  node screenshot.js / 1200x630 og.png 1.91:1");
     process.exit(1);
   }
 
   // Determine if input is a full URL or a path
   let url;
-  if (pageOrUrl.startsWith('http://') || pageOrUrl.startsWith('https://')) {
+  if (pageOrUrl.startsWith("http://") || pageOrUrl.startsWith("https://")) {
     url = pageOrUrl;
   } else {
     // Treat as path, prepend localhost
-    const urlPath = pageOrUrl.startsWith('/') ? pageOrUrl.slice(1) : pageOrUrl;
+    const urlPath = pageOrUrl.startsWith("/") ? pageOrUrl.slice(1) : pageOrUrl;
     url = `http://localhost:3021/${urlPath}`;
   }
 

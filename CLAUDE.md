@@ -62,6 +62,7 @@ The project uses Jinja2 templates with minijinja-cli for server-side rendering:
 #### Testing Templates
 
 **Test templates directly with minijinja-cli:**
+
 ```bash
 # Test individual templates
 minijinja-cli ./index.html
@@ -71,6 +72,7 @@ minijinja-cli ./canvas/index.html
 ```
 
 **Test full stack with serve.nu:**
+
 ```bash
 # Start the server (runs in background)
 cat serve.nu | http-nu :3021 -
@@ -85,7 +87,9 @@ curl -s localhost:3021/canvas/ | grep -c "{% extends"
 ```
 
 **Template troubleshooting:**
-- Ensure paths are correct in template inheritance (`../base.html` for subdirectories)
+
+- Ensure paths are correct in template inheritance (`../base.html` for
+  subdirectories)
 - Set `components_path_value` variable in child templates for script paths
 - Test minijinja-cli directly before testing through server
 
