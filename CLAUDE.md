@@ -52,21 +52,22 @@ The project uses Lit components. Components are in www/components/
 
 ### Template System
 
-The project uses Jinja2 templates with minijinja-cli for server-side rendering:
+The project uses Jinja2 templates rendered by http-nu's built-in `.mj` command
+(minijinja):
 
 - `base.html` - Base template with common HTML structure
 - `index.html` - Main page template (extends base.html)
 - `canvas/index.html` - Canvas page template (extends ../base.html)
-- `serve.nu` - Nushell server script with minijinja integration
+- `serve.nu` - Nushell server script with `.mj` template rendering
 
 #### Testing Templates
 
-**Test templates directly with minijinja-cli:**
+**Test templates with http-nu eval:**
 
 ```bash
 # Test individual templates
-minijinja-cli ./index.html
-minijinja-cli ./canvas/index.html
+http-nu eval -c '{} | .mj "./index.html"'
+http-nu eval -c '{} | .mj "./canvas/index.html"'
 
 # Should output fully rendered HTML, no raw {% %} syntax
 ```
@@ -88,10 +89,8 @@ curl -s localhost:3021/canvas/ | grep -c "{% extends"
 
 **Template troubleshooting:**
 
-- Ensure paths are correct in template inheritance (`../base.html` for
-  subdirectories)
 - Set `components_path_value` variable in child templates for script paths
-- Test minijinja-cli directly before testing through server
+- Test with `http-nu eval` directly before testing through server
 
 ### Development Loop (for AI agents)
 
