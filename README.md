@@ -1,15 +1,9 @@
-Requires [http-nu](https://github.com/cablehead/http-nu) >= 0.10.2
+Requires [http-nu](https://github.com/cablehead/http-nu) >= 0.19.0
 
 ## Quick Start
 
 ```nushell
-do { cd www; cat serve.nu | http-nu :3021 - }
+http-nu --datastar :3021 www/serve.nu
 ```
 
 Visit http://localhost:3021
-
-## Tests
-
-```nushell
-do { cd www; http-nu eval test.nu } | bat -l html
-```

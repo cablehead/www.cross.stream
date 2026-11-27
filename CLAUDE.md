@@ -42,55 +42,19 @@ visual methods instead of making text bold.
 
 ## Development
 
-A web server is running on port 3021 serving the www/ directory. You can access:
-
-- http://localhost:3021/ # main page
-- http://localhost:3021/canvas/ # business model canvas
-- http://localhost:3021/review/ # to view the main in 3x page widths
-
-The project uses Lit components. Components are in www/components/
-
-### Template System
-
-The project uses Jinja2 templates rendered by http-nu's built-in `.mj` command
-(minijinja):
-
-- `base.html` - Base template with common HTML structure
-- `index.html` - Main page template (extends base.html)
-- `canvas/index.html` - Canvas page template (extends ../base.html)
-- `serve.nu` - Nushell server script with `.mj` template rendering
-
-#### Testing Templates
-
-**Test templates with http-nu eval:**
+The site is one page, served by `www/serve.nu`:
 
 ```bash
-# Test individual templates
-http-nu eval -c '{} | .mj "./index.html"'
-http-nu eval -c '{} | .mj "./canvas/index.html"'
-
-# Should output fully rendered HTML, no raw {% %} syntax
+http-nu --datastar :3021 www/serve.nu
 ```
 
-**Test full stack with serve.nu:**
+- `www/index.html` - the page, a minijinja template rendered by `.mj`
+- `www/serve.nu` - the page's data (the demo frames, the parts of xs, the
+  release) and the server
+- `www/site.css` - every value a token, raw tags styled once
+- `www/assets/og.png` - the link preview
 
-```bash
-# Start the server (runs in background)
-cat serve.nu | http-nu :3021 -
-
-# Test with curl
-curl -s localhost:3021 | head -10              # main page
-curl -s localhost:3021/canvas/ | head -10      # canvas page
-curl -I localhost:3021/global.css              # static files
-
-# Verify templates are rendered (should return 0)
-curl -s localhost:3021/canvas/ | grep -c "{% extends"
-```
-
-**Template troubleshooting:**
-
-- Set `components_path_value` variable in child templates for script paths
-- Test with `http-nu eval` directly before testing through server
+Datastar runs the one interactive part, the query switch.
 
 ### Development Loop (for AI agents)
 
@@ -112,7 +76,7 @@ curl -s localhost:3021/canvas/ | grep -c "{% extends"
 6. **Loop**
 
 ```bash
-# Generate review screenshot  
+# Generate a screenshot
 node bin/screenshot.js / 1200 www/screenshots/review.png
 # Review www/screenshots/review.png for issues and critique
 ```
